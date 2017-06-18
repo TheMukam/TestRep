@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+	<title>Герератор пароля</title>
+</head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+	function str_rand() {
+		var result       = '';
+		var words        = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+		var max_position = words.length - 1;
+			for( i = 0; i < 10; ++i ) {
+				position = Math.floor ( Math.random() * max_position );
+				result = result + words.substring(position, position + 1);
+			}
+		return result;
+	}
+	$('.showPassword').click(function(){
+		var inputPsw = $('#password');
+		if (inputPsw.attr('type') == 'password') {
+			document.getElementById('password').setAttribute('type', 'text');
+		} else {
+			document.getElementById('password').setAttribute('type', 'password');
+		}
+	});
+	$('.generatePassword').click(function() {
+		document.getElementById('password').setAttribute('type', 'text');
+		$('#password').attr('value', str_rand());
+	});
+});
+</script>
+
+
+<input type="password" name="password" id="password" />
+<a href="#" class="showPassword">Показать</a>
+<a href="#" class="generatePassword">Сегенерировать</a>
+<body>
+</html>
